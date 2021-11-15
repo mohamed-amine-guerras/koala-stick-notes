@@ -73,8 +73,8 @@ class ReactStickyNotes extends Component {
 					text: '',
 					selected: true,
 					position: {
-						x: 0,
-						y: 0
+						x: (data && data.position) ? Math.max(data.position.x - 10, 0) : 0,
+						y: (data && data.position) ? Math.max(data.position.y - 10, 0) : 0
 					}
 				}
 			}
