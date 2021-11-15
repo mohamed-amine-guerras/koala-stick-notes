@@ -44,6 +44,9 @@ export default class Draggable {
 
     }
     onMouseDown = (e) => {
+        if(this.options.onDragStart){
+            this.options.onDragStart();
+        }
         const el = this.options.element;
         const parentElement = el.parentElement;
         const rect = el.getBoundingClientRect();

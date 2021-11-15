@@ -16,7 +16,8 @@ class Note extends React.Component{
                 position: props.data.position,
                 selected: props.data.selected,
                 target: this.targetRef,
-                onDragComplete:(pos)=> props.callbacks.updateItem(null, {id: props.data.id, position:pos}),
+                onDragStart: ()=> props.callbacks.toggleDragging(null, {dragging: true}),
+                onDragComplete:(pos)=> {props.callbacks.updateItem(null, {id: props.data.id, position:pos}); props.callbacks.toggleDragging(null, {dragging: false}); },
                 style: getElementStyle('note', props, { boxShadow: '1px 1px 2px rgba(0,0,0,.15)' } )
             }, [
                 h(NoteHeader, {

@@ -13,6 +13,7 @@ function App() {
                     backgroundColor="#1F1A24"
                     useCSS={true}
                     containerHeight={"95vmin"}
+                    
                 />
             </div>
         </div>

@@ -10,6 +10,27 @@ export function getElementStyle(nodeName, props, defaultStyle={}) {
                     backgroundColor: props.backgroundColor
                 }
         break;
+        case "notes-container":
+                style = { 
+                    ...defaultStyle,
+                    position: 'absolute',
+                    left:0,
+                    width: props.containerWidth, 
+                    height: props.containerHeight, 
+                    backgroundColor: "#fefefe"
+                }
+        break;
+        case "canvas":
+                style = { 
+                    ...defaultStyle,
+                    position: 'absolute',
+                    left:0,
+                    zIndex: 5,
+                    width: props.containerWidth, 
+                    height: props.containerHeight, 
+                    backgroundColor: props.backgroundColor
+                }
+        break;
         case "note":
                 style = {
                     ...defaultStyle,
@@ -17,10 +38,11 @@ export function getElementStyle(nodeName, props, defaultStyle={}) {
                     left: props.viewSize==="pageview"||props.viewSize==="fullscreen"?0:props.data.position?`${props.data.position.x}px`:0,
                     top: props.viewSize==="pageview"||props.viewSize==="fullscreen"?0:props.data.position?`${props.data.position.y}px`:0,
                     width: props.viewSize==="pageview"||props.viewSize==="fullscreen"?"100%":null,
-                    height: props.viewSize==="pageview"||props.viewSize==="fullscreen"?"100%":null
+                    height: props.viewSize==="pageview"||props.viewSize==="fullscreen"?"100%":null,
+                    zIndex: 15
                 }
                 if(props.data.selected){
-                    style.zIndex = 1;
+                    style.zIndex = 20;
                 }
         break;
         case "note-body":
