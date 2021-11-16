@@ -7,6 +7,13 @@ export function getElementStyle(nodeName, props, defaultStyle={}) {
                 zIndex: 25,
             }
         break;
+        case "button":
+            style = {
+                ...defaultStyle,
+                padding: '0 1px',
+                width: '2vmin'
+            }
+        break;
         case "container":
                 style = { 
                     ...defaultStyle,

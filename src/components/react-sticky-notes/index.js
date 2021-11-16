@@ -30,95 +30,11 @@ class ReactStickyNotes extends Component {
 			canvasHeight: document.body.clientHeight
 		};
 
-		// Stores the initial position of the cursor
-		this.coord = { x: 0, y: 0 };
-
-		// This is the flag that we are going to use to
-		// trigger drawing
-		this.paint = false;
 	}
 
-	// Resizes the canvas to the available size of the window.
-	resize = () => {
-		this.resizeCanvas(null, {width: document.body.clientWidth, height: document.body.clientHeight});
-	}
-
-
-
-	// Updates the coordianates of the cursor when
-	// an event e is triggered to the coordinates where
-	// the said event is triggered.
-	getPosition = (event) => {
-		this.coord.x = event.clientX - canvas.offsetLeft;
-		this.coord.y = event.clientY - canvas.offsetTop;
-	}
-
-	// The following functions toggle the flag to start
-	// and stop drawing
-	startPainting = (event) => {
-		if (!this.state.dragging) {
-			this.paint = true;
-			this.getPosition(event);
-		}
-
-	}
-	stopPainting = () => {
-		this.paint = false;
-	}
-
-	clearCanvas = () => {
-		this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-	}
-
-	sketch = (event) => {
-		let { paint, ctx, coord } = this;
-		if (!paint) return;
-		ctx.beginPath();
-
-		ctx.lineWidth = 5;
-
-		// Sets the end of the lines drawn
-		// to a round shape.
-		ctx.lineCap = 'round';
-
-		ctx.strokeStyle = 'white';
-
-		// The cursor to start drawing
-		// moves to this coordinate
-		ctx.moveTo(coord.x, coord.y);
-
-		// The position of the cursor
-		// gets updated as we move the
-		// mouse around.
-		this.getPosition(event);
-
-		// A line is traced from start
-		// coordinate to this coordinate
-		ctx.lineTo(coord.x, coord.y);
-
-		// Draws the line.
-		ctx.stroke();
-	}
 
 	componentDidMount() {
-		// wait for the content of the window element
-		// to load, then performs the operations.
-		// This is considered best practice.
-		this.canvas = document.querySelector('#canvas');
-
-		// Context for the canvas for 2 dimensional operations
-		this.ctx = canvas.getContext('2d');
-
-		this.ctx.canvas.width = this.state.canvasWidth;
-		this.ctx.canvas.height = this.state.canvasHeight;
-
-		document.addEventListener('mousedown', this.startPainting);
-		document.addEventListener('mouseup', this.stopPainting);
-		document.addEventListener('mousemove', this.sketch);
-		window.addEventListener('resize', this.resize);
-
-
-
+		
 		if (this.props.useCSS) {
 			require('./index.scss');
 		}
@@ -259,6 +175,7 @@ class ReactStickyNotes extends Component {
 			viewSize,
 			canvasHeight,
 			canvasWidth,
+			dragging: this.state.dragging,
 			callbacks: {
 				changeView: this.changeView,
 				addItem: this.addItem,
@@ -267,7 +184,7 @@ class ReactStickyNotes extends Component {
 				changeModal: this.changeModal,
 				saveJSON: this.saveJSON,
 				toggleDragging: this.toggleDragging,
-				clearCanvas: this.clearCanvas
+				resizeCanvas: this.resizeCanvas
 			}
 		})
 	}

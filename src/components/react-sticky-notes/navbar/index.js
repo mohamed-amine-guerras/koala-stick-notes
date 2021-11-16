@@ -28,14 +28,15 @@ function NavBar({viewSize, prefix, items, callbacks, icons}){
         ),
         h('div',{
             key: `navbar-item__options`,
-            className:`${prefix}--navbar__nav`
+            className:`${prefix}--navbar__nav`,
+            
         },
             h( NoteHeader, {
                 prefix: `${prefix}--navbar__item`,
                 viewSize: viewSize,
                 icons,
                 callbacks,
-                buttons: [ButtonAdd, ButtonClearCanvas, ButtonUpload, ButtonTrash]
+                buttons: [ButtonAdd, ButtonUpload, ButtonTrash, ButtonClearCanvas]
             })
         )
     ]);

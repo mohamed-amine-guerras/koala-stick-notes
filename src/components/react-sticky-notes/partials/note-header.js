@@ -7,6 +7,7 @@ function NoteHeader(props) {
         props.buttons?props.buttons.map((Button,i)=> 
             h(Button, { 
                 key: `${props.prefix}${props.data?props.data.id:'all'}__note-button__${i}`,
+                style: getElementStyle('button',{data: props.data}),
                 ...props 
             })
         ):null

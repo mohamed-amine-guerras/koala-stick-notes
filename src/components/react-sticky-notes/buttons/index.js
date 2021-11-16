@@ -66,8 +66,8 @@ export function ButtonPageView({prefix, icons, callbacks, viewSize }){
 export function ButtonUpload({prefix, icons, callbacks }){
     return h('button',{
         key: `${prefix}--button__upload`,
-        title: 'Upload image',
         className:`${prefix}--button ${prefix}--button__upload`,
+        title: 'Upload image',
         onClick:(e)=> callbacks.changeModal(e, 'upload')
     }, 
         icons.upload
@@ -79,7 +79,7 @@ export function ButtonClearCanvas({prefix, icons, callbacks }){
         key: `${prefix}--button__clear_canvas`,
         className:`${prefix}--button ${prefix}--button__clear_canvas`,
         title: 'Clear canvas',
-        onClick:(e)=> callbacks.clearCanvas()
+        onClick:()=> callbacks.clearCanvas()
     }, 
         icons.clear
     );

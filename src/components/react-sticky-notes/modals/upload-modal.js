@@ -18,7 +18,9 @@ export class UploadModal extends Component{
         if(file){
             if( file.type==='image/png' || file.type==="image/jpg" || file.type==="image/jpeg" || file.type==="image/gif" ){
                 const src = URL.createObjectURL(file);
-                this.props.callbacks.addItem(null, {src})
+                this.props.callbacks.addItem(null, {src});
+                this.handleResponse(null, "Image Uploaded Successfully", "success")
+                
             }else{
                 this.handleResponse( "File type is not allowed. Please upload an Image file." );
             }
@@ -27,7 +29,7 @@ export class UploadModal extends Component{
     handleResponse(err, contents, response){
         let error = err;
         if(response){
-            if(!Array.isArray(response)){
+            if(response !== "success"){
                 error = "Please upload a valid Image file."
                 response = null;
                 contents = null;
@@ -93,20 +95,7 @@ export class UploadModal extends Component{
                     key: 'upload-error',
                     className: `${props.prefix}--upload-error`,
                 }, error ):null,
-                contents?h(Fragment,{
-                    key: 'file-upload--save-cancel',
-                },
-                    h('button', {
-                        key: 'file-upload--cancel',
-                        className: `${props.prefix}--form-cancel`,
-                        onClick: (e)=>props.callbacks.changeModal(e, null )
-                    }, 'Cancel' ),
-                    h('button', {
-                        key: 'file-upload--save',
-                        className: `${props.prefix}--form-save`,
-                        onClick: this.saveJSON
-                    }, 'Save' )
-                ):h('button', {
+                h('button', {
                     key: 'file-upload--cancel',
                     className: `${props.prefix}--form-cancel`,
                     onClick: (e)=>props.callbacks.changeModal(e, null )
