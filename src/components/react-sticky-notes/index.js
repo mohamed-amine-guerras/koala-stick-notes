@@ -66,6 +66,10 @@ class ReactStickyNotes extends Component {
 		this.paint = false;
 	}
 
+	clearCanvas = () => {
+		this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+	}
+
 	sketch = (event) => {
 		let { paint, ctx, coord } = this;
 		if (!paint) return;
@@ -261,7 +265,8 @@ class ReactStickyNotes extends Component {
 				deleteItem: this.deleteItem,
 				changeModal: this.changeModal,
 				saveJSON: this.saveJSON,
-				toggleDragging: this.toggleDragging
+				toggleDragging: this.toggleDragging,
+				clearCanvas: this.clearCanvas
 			}
 		})
 	}

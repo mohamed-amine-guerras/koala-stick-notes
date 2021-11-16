@@ -4,6 +4,7 @@ export function ButtonAdd({prefix, data, icons, callbacks}){
     return h('button',{
         key: `${prefix}--button__add`,
         className:`${prefix}--button ${prefix}--button__add`,
+        title:  'Add new note',
         onClick:(e)=>callbacks.addItem(e, {id: data?data.id:null, position:data?data.position:null, selected: true})
     }, 
         icons.add
@@ -45,6 +46,7 @@ export function ButtonTrash({prefix, data, icons, callbacks }){
     return h('button',{
         key: `${prefix}--button__trash`,
         className:`${prefix}--button ${prefix}--button__trash`,
+        title: 'Delete all notes',
         onClick:(e)=>callbacks.deleteItem(e, {id: data?data.id:null})
     }, 
         icons.trash
@@ -68,5 +70,16 @@ export function ButtonUpload({prefix, icons, callbacks }){
         onClick:(e)=> callbacks.changeModal(e, 'upload')
     }, 
         icons.upload
+    );
+}
+
+export function ButtonClearCanvas({prefix, icons, callbacks }){
+    return h('button',{
+        key: `${prefix}--button__clear_canvas`,
+        className:`${prefix}--button ${prefix}--button__clear_canvas`,
+        title: 'Clear canvas',
+        onClick:(e)=> callbacks.clearCanvas()
+    }, 
+        icons.clear
     );
 }

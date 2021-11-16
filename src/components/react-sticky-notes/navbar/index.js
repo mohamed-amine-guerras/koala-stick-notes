@@ -1,6 +1,6 @@
 import { h, getElementStyle } from './../utils';
 import NoteHeader from './../partials/note-header';
-import { ButtonAdd, ButtonTitle, ButtonMenu, ButtonTrash } from './../buttons';
+import { ButtonAdd, ButtonTitle, ButtonMenu, ButtonClearCanvas, ButtonTrash } from './../buttons';
 function NavBar({viewSize, prefix, items, callbacks, icons}){
     const buttons = [ ButtonTitle, ButtonTrash];
     if(viewSize==='pageview'||viewSize==='fullscreen'){
@@ -35,7 +35,7 @@ function NavBar({viewSize, prefix, items, callbacks, icons}){
                 viewSize: viewSize,
                 icons,
                 callbacks,
-                buttons: [ButtonAdd, ButtonTrash]
+                buttons: [ButtonAdd, ButtonClearCanvas, ButtonTrash]
             })
         )
     ]);
