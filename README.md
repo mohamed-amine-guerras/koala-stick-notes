@@ -8,6 +8,7 @@ A small web-app which allows users to arrange sticky notes on a canvas.
 
 ```bash
 git clone https://github.com/mohamed-amine-guerras/koala-stick-notes.git
+cd koala-stick-notes
 npm install
 npm start run
 ```
