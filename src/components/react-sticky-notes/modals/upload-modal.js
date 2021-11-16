@@ -16,27 +16,11 @@ export class UploadModal extends Component{
     uploadFile = (e) => {
         const file = e.target.files[0];
         if(file){
-            if( file.type==='application/json' || file.type==="application/vnd.ms-excel" ){
-                var reader = new FileReader();
-                reader.onload = (readerEvent) => {
-                    let response, responseText;
-                    switch(file.type){
-                        case "application/vnd.ms-excel":
-                            response = parseCSV(readerEvent.target.result);
-                        break;
-                        case "application/json":
-                            response = JSON.parse(readerEvent.target.result);
-                        break;
-                    }
-                    responseText = JSON.stringify(response, null, 4);
-                    this.handleResponse(null, responseText, response);
-                };
-                reader.onerror = function(readerEvent) {
-                    this.handleResponse("File could not be read! Code " + readerEvent.target.error.code);
-                };
-                reader.readAsText(file);
+            if( file.type==='image/png' || file.type==="image/jpg" || file.type==="image/jpeg" || file.type==="image/gif" ){
+                const src = URL.createObjectURL(file);
+                this.props.callbacks.addItem(null, {src})
             }else{
-                this.handleResponse( "File type is not allowed. Please upload a JSON or CSV file." );
+                this.handleResponse( "File type is not allowed. Please upload an Image file." );
             }
         }
     }
@@ -44,7 +28,7 @@ export class UploadModal extends Component{
         let error = err;
         if(response){
             if(!Array.isArray(response)){
-                error = "Please upload a valid JSON or CSV file."
+                error = "Please upload a valid Image file."
                 response = null;
                 contents = null;
             }
@@ -83,7 +67,7 @@ export class UploadModal extends Component{
                     type: 'file',
                     id: `${props.prefix}--file-input`,
                     className: `${props.prefix}--file-input`,
-                    accept: ".json,.csv",
+                    accept: ".png,.jpg,.jpeg,.gif",
                     onChange: (e)=>this.uploadFile(e),
                     placeholder: 'upload file'
                 }),

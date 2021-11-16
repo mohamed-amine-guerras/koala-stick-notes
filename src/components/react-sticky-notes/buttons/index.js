@@ -66,6 +66,7 @@ export function ButtonPageView({prefix, icons, callbacks, viewSize }){
 export function ButtonUpload({prefix, icons, callbacks }){
     return h('button',{
         key: `${prefix}--button__upload`,
+        title: 'Upload image',
         className:`${prefix}--button ${prefix}--button__upload`,
         onClick:(e)=> callbacks.changeModal(e, 'upload')
     }, 
