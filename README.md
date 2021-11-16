@@ -10,8 +10,9 @@ A small web-app which allows users to arrange sticky notes on a canvas.
 git clone https://github.com/mohamed-amine-guerras/koala-stick-notes.git
 cd koala-stick-notes
 npm install
-npm start run
+npm start
 ```
+You'll find the app at http://localhost:4000/
 
 ## Features
 
