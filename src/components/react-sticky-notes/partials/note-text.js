@@ -8,7 +8,7 @@ function NoteText({ data, index, prefix, callbacks }) {
             id:data.id,
             text: e.target.innerText
         }),
-        onFocus:(e)=>callbacks.updateItem(e, {id:data.id, selected:true, datetime: getCurrentDateTime() }),
+        onFocus:(e)=>callbacks.updateItem(e, {id:data.id, selected:true, datetime: getCurrentDateTime()}),
         dangerouslySetInnerHTML:{__html:nlToBr(data.text)},
         style: getElementStyle('note-input')
     })

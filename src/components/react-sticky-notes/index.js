@@ -81,7 +81,7 @@ class ReactStickyNotes extends Component {
 		// to a round shape.
 		ctx.lineCap = 'round';
 
-		ctx.strokeStyle = 'green';
+		ctx.strokeStyle = 'white';
 
 		// The cursor to start drawing
 		// moves to this coordinate
@@ -167,7 +167,8 @@ class ReactStickyNotes extends Component {
 					position: {
 						x: (data && data.position) ? Math.max(data.position.x - 10, 0) : 0,
 						y: (data && data.position) ? Math.max(data.position.y - 10, 0) : 0
-					}
+					},
+					src: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
 				}
 			}
 		});
