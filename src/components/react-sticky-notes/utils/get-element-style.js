@@ -1,6 +1,12 @@
 export function getElementStyle(nodeName, props, defaultStyle={}) {
     let style = defaultStyle;
     switch(nodeName){
+        case "navbar":
+            style = {
+                ...defaultStyle,
+                zIndex: 25,
+            }
+        break;
         case "container":
                 style = { 
                     ...defaultStyle,
@@ -17,7 +23,7 @@ export function getElementStyle(nodeName, props, defaultStyle={}) {
                     left:0,
                     width: props.containerWidth, 
                     height: props.containerHeight, 
-                    backgroundColor: "#fefefe"
+                    backgroundColor: "#524789"
                 }
         break;
         case "canvas":
@@ -26,8 +32,8 @@ export function getElementStyle(nodeName, props, defaultStyle={}) {
                     position: 'absolute',
                     left:0,
                     zIndex: 5,
-                    width: props.containerWidth, 
-                    height: props.containerHeight, 
+                    width: props.canvasWidth, 
+                    height: props.canvasHeight, 
                     backgroundColor: props.backgroundColor
                 }
         break;

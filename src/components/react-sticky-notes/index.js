@@ -26,6 +26,8 @@ class ReactStickyNotes extends Component {
 			viewSize: 'normalview',
 			items: getNotes(props.colorCodes, props.notes),
 			dragging: false,
+			canvasWidth: document.body.clientWidth,
+			canvasHeight: document.body.clientHeight
 		};
 
 		// Stores the initial position of the cursor
@@ -38,8 +40,7 @@ class ReactStickyNotes extends Component {
 
 	// Resizes the canvas to the available size of the window.
 	resize = () => {
-		this.ctx.canvas.width = window.innerWidth;
-		this.ctx.canvas.height = window.innerHeight;
+		this.resizeCanvas(null, {width: document.body.clientWidth, height: document.body.clientHeight});
 	}
 
 
@@ -104,7 +105,9 @@ class ReactStickyNotes extends Component {
 		// Context for the canvas for 2 dimensional operations
 		this.ctx = canvas.getContext('2d');
 
-		this.resize(); // Resizes the canvas once the window loads
+		this.ctx.canvas.width = this.state.canvasWidth;
+		this.ctx.canvas.height = this.state.canvasHeight;
+
 		document.addEventListener('mousedown', this.startPainting);
 		document.addEventListener('mouseup', this.stopPainting);
 		document.addEventListener('mousemove', this.sketch);
@@ -174,6 +177,14 @@ class ReactStickyNotes extends Component {
 		});
 
 	}
+	resizeCanvas = (e, data) => {
+		this.dispatch({
+			type: 'resize',
+			payload: {
+				data
+			}
+		});
+	}
 	updateItem = (e, data) => {
 		this.dispatch({
 			type: 'update',
@@ -212,7 +223,7 @@ class ReactStickyNotes extends Component {
 		});
 	}
 	render() {
-		const { items, viewSize, modal } = this.state;
+		const { items, viewSize, modal, canvasHeight, canvasWidth } = this.state;
 		let View = null;
 		if (modal) {
 			switch (modal) {
@@ -241,6 +252,8 @@ class ReactStickyNotes extends Component {
 			items,
 			icons: { ...icons, ...this.props.icons },
 			viewSize,
+			canvasHeight,
+			canvasWidth,
 			callbacks: {
 				changeView: this.changeView,
 				addItem: this.addItem,

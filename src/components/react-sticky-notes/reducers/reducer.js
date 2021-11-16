@@ -1,10 +1,14 @@
 const reducer = (state, action) => {
     const viewSizes = ['bubbleview', 'normalview', 'pageview','fullscreen'];
     const params = action.payload&&action.payload.data?Object.keys(action.payload.data):[];
-    let { items, viewSize, modal, dragging } = state;
+    let { items, viewSize, modal, dragging, canvasWidth, canvasHeight } = state;
     switch (action.type) {
 		case 'changemodal':
 		    modal = action.payload.modal;
+        break;
+        case 'resize':
+		    canvasHeight = action.payload.data.height;
+            canvasWidth = action.payload.data.width;
         break;
         case 'toggledragging':
 		    dragging = action.payload.data.dragging;
@@ -51,6 +55,6 @@ const reducer = (state, action) => {
                 items = state.items;
             break;
     }
-    return { items, viewSize, modal, dragging };
+    return { items, viewSize, modal, dragging, canvasHeight, canvasWidth };
 }
 export default reducer;
