@@ -1,4 +1,4 @@
-import { h, getElementStyle, parseCSV } from './../utils';
+import { h, getElementStyle, parseCSV } from '../utils';
 import React, { Component, Fragment } from 'react';
 export class UploadModal extends Component{
     constructor(){
@@ -48,18 +48,12 @@ export class UploadModal extends Component{
         }
     }
     render(){
-        const { error, contents } = this.state; 
+        const { error, contents, response } = this.state; 
         const props = this.props;
         return h('div',{
             key: `${props.prefix}`,
             className:  `${props.prefix} ${props.prefix}--file-upload`
         },[
-            contents?h('textarea',{
-                key: 'file-upload--contents',
-                className: `${props.prefix}--file-preview`,
-                readOnly: true,
-                defaultValue: contents
-            }):null,
             h('div', {
                 key: `${props.prefix}--file-drop`,
                 className: `${props.prefix}--file-drop ${!contents?props.prefix+'--file-drop__cover':''}`
@@ -95,6 +89,10 @@ export class UploadModal extends Component{
                     key: 'upload-error',
                     className: `${props.prefix}--upload-error`,
                 }, error ):null,
+                response==="success"?h('p', {
+                    key: 'upload-success',
+                    className: `${props.prefix}--upload-success`,
+                }, contents ):null,
                 h('button', {
                     key: 'file-upload--cancel',
                     className: `${props.prefix}--form-cancel`,
