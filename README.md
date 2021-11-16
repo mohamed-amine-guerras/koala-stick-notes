@@ -2,7 +2,7 @@
 
 A small web-app which allows users to arrange sticky notes on a canvas.
 
-
+![Sticky Notes for Simple User](screenshot.png?raw=true)
 
 ## Setting Up
 
