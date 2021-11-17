@@ -35,7 +35,7 @@
 		"build:dev": "webpack --mode development --config webpack.config.build.js",
 		"build:prod": "webpack --watch --mode production --config webpack.config.build.js",
 		"build:deploy": "webpack --mode production --config webpack.config.js",
-		"predeploy": "npm run build:deploy",
+		"predeploy": "npm install --only=dev && npm run build:deploy",
 		"deploy": "gh-pages -d build"
 	}
 }
